@@ -1,0 +1,16 @@
+# Minimal SearXNG config for Open WebUI. Inherits all upstream defaults,
+# enables the JSON API (Open WebUI needs it), sets a secret, disables the rate limiter
+# (single local user). bind_address/port are the container's internal values; the
+# Docker port mapping (-p 127.0.0.1:8888:8080) is what keeps it on loopback.
+use_default_settings: true
+server:
+  secret_key: "REPLACE_WITH_OUTPUT_OF_openssl_rand_-hex_32"
+  limiter: false
+  image_proxy: true
+  bind_address: "0.0.0.0"
+  port: 8080
+search:
+  safe_search: 0
+  formats:
+    - html
+    - json

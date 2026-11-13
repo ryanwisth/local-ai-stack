@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+  <key>Label</key><string>com.example.ai-stack</string>
+  <!-- Supervisor: runs the idempotent launcher at login and every 60 s. It only starts
+       services that are down, so it doubles as crash-restart. Services it starts are
+       reparented to launchd (pid 1), so they outlive the terminal or agent session. -->
+  <key>ProgramArguments</key>
+  <array><string>/bin/bash</string><string>/PATH/TO/local-ai-stack/scripts/start-stack.sh</string></array>
+  <key>WorkingDirectory</key><string>/Users/YOUR_USER/AI</string>
+  <key>RunAtLoad</key><true/>
+  <key>StartInterval</key><integer>60</integer>
+  <!-- Do NOT kill the services when the launcher script exits. -->
+  <key>AbandonProcessGroup</key><true/>
+  <key>Nice</key><integer>0</integer>
+  <key>EnvironmentVariables</key>
+  <dict>
+    <key>PATH</key><string>/Users/YOUR_USER/.local/bin:/opt/homebrew/bin:/opt/homebrew/sbin:/usr/local/bin:/usr/bin:/bin:/usr/sbin:/sbin</string>
+    <key>HOME</key><string>/Users/YOUR_USER</string>
+    <key>STACK_HOME</key><string>/Users/YOUR_USER/AI</string>
+  </dict>
+  <key>StandardOutPath</key><string>/Users/YOUR_USER/AI/launchd.log</string>
+  <key>StandardErrorPath</key><string>/Users/YOUR_USER/AI/launchd.log</string>
+</dict>
+</plist>

@@ -1,0 +1,220 @@
+[
+ {
+  "generation_mode": "ar",
+  "request_generation_mode": "ar",
+  "request_depth": 0,
+  "request_effective_mtp_depth": 0,
+  "mtp_depth": 0,
+  "completion_tokens": 1200,
+  "decode_tok_s": 13.670497619779072,
+  "sliding_decode_tok_s_last_256": 13.678299632375845,
+  "verify_calls": 0,
+  "accepted_by_depth": [],
+  "drafted_by_depth": [],
+  "verify_time_s": 0.0,
+  "verify_forward_time_s": 0.0,
+  "verify_eval_time_s": 0.0,
+  "target_forward_time_s": 87.66577223918284,
+  "draft_time_s": 0.0,
+  "accept_time_s": 0.0,
+  "producer_gap_ms_p95": 76.0992499999702,
+  "producer_gaps_over_200ms": 0,
+  "prefill_tok_s": 125.98771287260854,
+  "ttft_s": 0.717096083011711,
+  "active_memory_bytes": 22225376456,
+  "peak_memory_bytes": 42203180728,
+  "cache_memory_bytes": 1787313676,
+  "effective_temperature": 1.0,
+  "cfg": {
+   "generation_mode": "ar"
+  },
+  "wall_s": 88.67,
+  "stream_chunks": 1187
+ },
+ {
+  "generation_mode": "mtp",
+  "request_generation_mode": "mtp",
+  "request_depth": 1,
+  "request_effective_mtp_depth": 1,
+  "mtp_depth": 1,
+  "completion_tokens": 1200,
+  "decode_tok_s": 22.931763653411643,
+  "sliding_decode_tok_s_last_256": 21.81259095112986,
+  "verify_calls": 631,
+  "accepted_by_depth": [
+   562
+  ],
+  "drafted_by_depth": [
+   627
+  ],
+  "verify_time_s": 49.47480862880184,
+  "verify_forward_time_s": 24.027674404816935,
+  "verify_eval_time_s": 25.447134223984904,
+  "target_forward_time_s": 49.85244367081032,
+  "draft_time_s": 2.696442343876697,
+  "accept_time_s": 0.020126465751673095,
+  "producer_gap_ms_p95": 85.97329200711101,
+  "producer_gaps_over_200ms": 0,
+  "prefill_tok_s": 234.99410297493762,
+  "ttft_s": 0.3861929999984568,
+  "active_memory_bytes": 22489863672,
+  "peak_memory_bytes": 42203180728,
+  "cache_memory_bytes": 1983430320,
+  "effective_temperature": 1.0,
+  "cfg": {
+   "depth": 1
+  },
+  "wall_s": 52.72,
+  "stream_chunks": 1176
+ },
+ {
+  "generation_mode": "mtp",
+  "request_generation_mode": "mtp",
+  "request_depth": 2,
+  "request_effective_mtp_depth": 2,
+  "mtp_depth": 2,
+  "completion_tokens": 1200,
+  "decode_tok_s": 28.42896162527206,
+  "sliding_decode_tok_s_last_256": 30.06608333757769,
+  "verify_calls": 458,
+  "accepted_by_depth": [
+   403,
+   332
+  ],
+  "drafted_by_depth": [
+   455,
+   454
+  ],
+  "verify_time_s": 38.19543452198559,
+  "verify_forward_time_s": 19.422678616116173,
+  "verify_eval_time_s": 18.772755905869417,
+  "target_forward_time_s": 38.60020773098222,
+  "draft_time_s": 3.8602485841547605,
+  "accept_time_s": 0.021598516221274622,
+  "producer_gap_ms_p95": 94.68879199994262,
+  "producer_gaps_over_200ms": 1,
+  "prefill_tok_s": 219.15882342975237,
+  "ttft_s": 0.41512245799822267,
+  "active_memory_bytes": 22754826030,
+  "peak_memory_bytes": 42203180728,
+  "cache_memory_bytes": 1132396916,
+  "effective_temperature": 1.0,
+  "cfg": {
+   "depth": 2
+  },
+  "wall_s": 42.63,
+  "stream_chunks": 761
+ },
+ {
+  "generation_mode": "mtp",
+  "request_generation_mode": "mtp",
+  "request_depth": 3,
+  "request_effective_mtp_depth": 3,
+  "mtp_depth": 3,
+  "completion_tokens": 1200,
+  "decode_tok_s": 32.54442468842061,
+  "sliding_decode_tok_s_last_256": 35.129840061104034,
+  "verify_calls": 388,
+  "accepted_by_depth": [
+   339,
+   267,
+   203
+  ],
+  "drafted_by_depth": [
+   386,
+   386,
+   386
+  ],
+  "verify_time_s": 31.900046057300642,
+  "verify_forward_time_s": 16.617072555876803,
+  "verify_eval_time_s": 15.28297350142384,
+  "target_forward_time_s": 32.290630432311445,
+  "draft_time_s": 4.803470461367397,
+  "accept_time_s": 0.02491848926001694,
+  "producer_gap_ms_p95": 96.81445799651556,
+  "producer_gaps_over_200ms": 0,
+  "prefill_tok_s": 227.0888386357435,
+  "ttft_s": 0.40780491699115373,
+  "active_memory_bytes": 23022360678,
+  "peak_memory_bytes": 42203180728,
+  "cache_memory_bytes": 1316159640,
+  "effective_temperature": 1.0,
+  "cfg": {
+   "depth": 3
+  },
+  "wall_s": 37.28,
+  "stream_chunks": 555
+ },
+ {
+  "generation_mode": "ar",
+  "request_generation_mode": "ar",
+  "request_depth": 0,
+  "request_effective_mtp_depth": 0,
+  "mtp_depth": 0,
+  "completion_tokens": 1200,
+  "decode_tok_s": 13.611145567235063,
+  "sliding_decode_tok_s_last_256": 13.48763647867584,
+  "verify_calls": 0,
+  "accepted_by_depth": [],
+  "drafted_by_depth": [],
+  "verify_time_s": 0.0,
+  "verify_forward_time_s": 0.0,
+  "verify_eval_time_s": 0.0,
+  "target_forward_time_s": 87.71341383976687,
+  "draft_time_s": 0.0,
+  "accept_time_s": 0.0,
+  "producer_gap_ms_p95": 76.94674999220297,
+  "producer_gaps_over_200ms": 0,
+  "prefill_tok_s": 227.9380254154696,
+  "ttft_s": 0.39720400000805967,
+  "active_memory_bytes": 23278459278,
+  "peak_memory_bytes": 42203180728,
+  "cache_memory_bytes": 1062215536,
+  "effective_temperature": 1.0,
+  "cfg": {
+   "generation_mode": "ar"
+  },
+  "wall_s": 88.64,
+  "stream_chunks": 1003
+ },
+ {
+  "generation_mode": "mtp",
+  "request_generation_mode": "mtp",
+  "request_depth": 3,
+  "request_effective_mtp_depth": 3,
+  "mtp_depth": 3,
+  "completion_tokens": 1200,
+  "decode_tok_s": 32.09562477754271,
+  "sliding_decode_tok_s_last_256": 36.76623603842552,
+  "verify_calls": 381,
+  "accepted_by_depth": [
+   335,
+   270,
+   212
+  ],
+  "drafted_by_depth": [
+   378,
+   378,
+   377
+  ],
+  "verify_time_s": 32.36938134467346,
+  "verify_forward_time_s": 17.830537336238194,
+  "verify_eval_time_s": 14.538844008435262,
+  "target_forward_time_s": 32.748838844679995,
+  "draft_time_s": 4.844731826815405,
+  "accept_time_s": 0.024032654881011695,
+  "producer_gap_ms_p95": 100.36441699776333,
+  "producer_gaps_over_200ms": 3,
+  "prefill_tok_s": 233.75014446610078,
+  "ttft_s": 0.3963125830050558,
+  "active_memory_bytes": 23544584892,
+  "peak_memory_bytes": 42203180728,
+  "cache_memory_bytes": 1525727528,
+  "effective_temperature": 1.0,
+  "cfg": {
+   "depth": 3
+  },
+  "wall_s": 37.78,
+  "stream_chunks": 557
+ }
+]

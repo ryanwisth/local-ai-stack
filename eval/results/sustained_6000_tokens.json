@@ -1,0 +1,35 @@
+[
+ {
+  "completion_tokens": 6000,
+  "decode_tok_s": 31.259151198078108,
+  "sliding_decode_tok_s_first_256": 35.44125054919987,
+  "sliding_decode_tok_s_last_256": 30.167521278450863,
+  "sliding_decode_tok_s_first_64": 69.18977489836996,
+  "sliding_decode_tok_s_last_64": 33.02403729410173,
+  "verify_calls": 1925,
+  "accepted_by_depth": [
+   1678,
+   1323,
+   1015
+  ],
+  "drafted_by_depth": [
+   1918,
+   1917,
+   1916
+  ],
+  "verify_time_s": 166.6617156448774,
+  "verify_forward_time_s": 22.891727692782297,
+  "verify_eval_time_s": 143.7699879520951,
+  "producer_gap_ms_p95": 102.009915994131,
+  "producer_gaps_over_200ms": 2,
+  "peak_memory_bytes": 42203180728,
+  "finish_reason": "length",
+  "resolved_reasoning_effort": "xhigh",
+  "clear_cache_events": 0,
+  "clear_cache_time_s": 0.0,
+  "effort": "xhigh",
+  "wall_s": 192.4,
+  "reasoning_chunks": 2941,
+  "content_chunks": 0
+ }
+]

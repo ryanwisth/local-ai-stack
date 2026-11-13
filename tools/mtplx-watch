@@ -1,0 +1,87 @@
+#!/usr/bin/env python3
+"""Live view of what the running MTPLX server (:8000) is doing RIGHT NOW.
+
+Read-only: polls the server's own flight-recorder endpoint; never touches the
+process, never sends it a prompt.
+
+  watch            refresh every 2 s until Ctrl-C
+  watch --once     print one snapshot and exit
+  watch --tail     also print the full saved text of the last abnormal turn
+
+Shows: phase (prefill = re-reading the prompt, decode = writing), elapsed,
+an ETA for prefill based on the last completed turns, tokens/s, and the
+last ~400 characters the model has produced this turn (incl. tool-call bodies
+that Open WebUI hides until the call is complete).
+"""
+import json, os, sys, time, urllib.request
+
+BASE = os.environ.get("MTPLX_BASE", "http://127.0.0.1:8000")
+once = "--once" in sys.argv
+show_tail = "--tail" in sys.argv
+
+def get(path, timeout=6):
+    with urllib.request.urlopen(BASE + path, timeout=timeout) as r:
+        return json.load(r)
+
+def hms(s):
+    s = int(max(0, s)); return f"{s//3600:d}:{(s%3600)//60:02d}:{s%60:02d}" if s >= 3600 else f"{s//60:d}:{s%60:02d}"
+
+def recent_ttft_rate(recent):
+    """tokens-per-second of prefill from the last completed turns -> ETA."""
+    pts = [(e.get("prompt_tokens") or 0, e.get("ttft_s") or 0) for e in recent if e.get("ttft_s")]
+    pts = [(p, t) for p, t in pts if p > 20000 and t > 5][:5]
+    if not pts: return None
+    return sum(p for p, _ in pts) / sum(t for _, t in pts)
+
+def render():
+    d = get("/v1/mtplx/flight")
+    act, recent = d.get("active") or [], d.get("recent") or []
+    now = time.strftime("%H:%M:%S")
+    out = [f"MTPLX :8000  {now}   (flight log: {d.get('file')})", ""]
+    if not act:
+        out.append("IDLE - no request in flight.")
+    for a in act:
+        el = a.get("elapsed_s") or 0
+        ph = a.get("phase")
+        out.append(f"REQUEST {a['rid']}   session {a.get('session_id')}")
+        out.append(f"  phase      : {ph.upper()}   elapsed {hms(el)}   prompt {a.get('prompt_tokens'):,} tok")
+        if ph == "prefill":
+            rate = recent_ttft_rate(recent)
+            if rate:
+                eta = (a.get("prompt_tokens") or 0) / rate - el
+                out.append(f"  prefill    : re-reading the whole prompt at ~{rate:.0f} tok/s -> first output in ~{hms(eta)} (from recent turns)")
+            out.append("  output     : nothing written yet this turn (that is normal during prefill)")
+        else:
+            out.append(f"  output     : {a.get('gen_tokens')} tok   {a.get('tps_now')} tok/s now, {a.get('tps_avg')} avg   "
+                       f"thinking {a.get('reasoning_chars')} chars, answer/tool {a.get('content_chars')} chars"
+                       + (f"   STALLED {a.get('stalled_s')}s" if a.get("stalled_s") else ""))
+            out.append("  ---- last 400 chars being written ----")
+            out.append(a.get("tail") or "")
+            out.append("  --------------------------------------")
+    out.append("")
+    out.append("RECENT TURNS (newest first):")
+    for e in recent[:6]:
+        t = time.strftime("%H:%M:%S", time.localtime(e["ts"]))
+        ttft = e.get("ttft_s")
+        out.append(f"  {t}  prompt {e.get('prompt_tokens'):>7,}  out {e.get('completion_tokens') or 0:>5}  "
+                   f"wait {hms(ttft) if ttft else '  -  '}  total {hms(e.get('elapsed_s') or 0)}  {e.get('reason')}"
+                   + (f"  text: {e['text_path']}" if e.get("text_path") else ""))
+    if show_tail:
+        tp = next((e.get("text_path") for e in recent if e.get("text_path")), None)
+        if tp and os.path.exists(tp):
+            out += ["", f"---- {tp} ----", open(tp, errors="replace").read()]
+    return "\n".join(out)
+
+try:
+    while True:
+        try:
+            txt = render()
+        except Exception as ex:
+            txt = f"cannot reach MTPLX at {BASE}: {ex}"
+        if not once:
+            sys.stdout.write("\x1b[2J\x1b[H")
+        print(txt, flush=True)
+        if once: break
+        time.sleep(2)
+except KeyboardInterrupt:
+    pass

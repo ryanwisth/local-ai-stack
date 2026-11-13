@@ -1,0 +1,81 @@
+{
+  "mcpServers": {
+    "filesystem": {
+      "command": "npx",
+      "args": ["-y", "@modelcontextprotocol/server-filesystem", "/Users/YOUR_USER/ALLOWED_DIR_1", "/Users/YOUR_USER/ALLOWED_DIR_2"]
+    },
+    "memory": {
+      "command": "npx",
+      "args": ["-y", "@modelcontextprotocol/server-memory"],
+      "env": { "MEMORY_FILE_PATH": "/Users/YOUR_USER/AI/mcp/data/owui-memory.jsonl" }
+    },
+    "fetch": { "command": "uvx", "args": ["mcp-server-fetch"] },
+    "time": { "command": "uvx", "args": ["mcp-server-time"] },
+    "sequential-thinking": {
+      "command": "npx",
+      "args": ["-y", "@modelcontextprotocol/server-sequential-thinking"]
+    },
+    "apple-ocr": { "command": "npx", "args": ["-y", "macos-vision-mcp"] },
+    "shell": {
+      "command": "/Users/YOUR_USER/.local/share/uv/tools/mcpo/bin/python",
+      "args": ["/PATH/TO/local-ai-stack/services/mcp/shell-mcp.py"]
+    },
+    "browser": {
+      "command": "npx",
+      "args": ["-y", "@playwright/mcp@latest", "--headless", "--browser", "chromium"]
+    },
+    "searxng": {
+      "command": "npx",
+      "args": ["-y", "mcp-searxng@2.3.0"],
+      "env": { "SEARXNG_URL": "http://127.0.0.1:8888" }
+    },
+    "sympy": {
+      "command": "uv",
+      "args": ["run", "--directory", "/PATH/TO/sympy-mcp", "python", "server.py"]
+    },
+    "pdftools": { "command": "pdf-toolkit-mcp" },
+    "youtube-transcript": {
+      "command": "uvx",
+      "args": ["--from", "git+https://github.com/jkawamoto/mcp-youtube-transcript", "mcp-youtube-transcript", "--response-limit", "-1"]
+    },
+    "apple-reminders": { "command": "npx", "args": ["-y", "@griches/apple-reminders-mcp@latest"] },
+    "apple-calendar": { "command": "npx", "args": ["-y", "@griches/apple-calendar-mcp@latest"] },
+    "serena": {
+      "command": "uvx",
+      "args": ["-p", "3.13", "--from", "git+https://github.com/oraios/serena", "serena", "start-mcp-server", "--context", "ide", "--transport", "stdio", "--enable-web-dashboard", "False"]
+    },
+    "duckdb": {
+      "command": "uvx",
+      "args": ["mcp-server-motherduck@1.0.8", "--db-path", ":memory:", "--read-write", "--init-sql", "INSTALL sqlite; LOAD sqlite; ATTACH '/PATH/TO/your.db' AS mydb (TYPE sqlite, READ_ONLY);"],
+      "env": { "HOME": "/Users/YOUR_USER" }
+    },
+    "git": {
+      "command": "npx",
+      "args": ["-y", "@cyanheads/git-mcp-server@latest"],
+      "env": { "GIT_BASE_DIR": "/Users/YOUR_USER/PROJECTS_DIR", "MCP_TRANSPORT_TYPE": "stdio", "MCP_LOG_LEVEL": "warning" }
+    },
+    "docker": { "command": "uvx", "args": ["mcp-server-docker"] },
+    "ast-grep": {
+      "command": "uvx",
+      "args": ["--from", "git+https://github.com/ast-grep/ast-grep-mcp", "ast-grep-server"],
+      "env": { "PATH": "/opt/homebrew/bin:/Users/YOUR_USER/.local/bin:/usr/bin:/bin", "AST_GREP_PATH": "/opt/homebrew/bin/ast-grep" }
+    },
+    "osv-scanner": {
+      "command": "uv",
+      "args": ["run", "/PATH/TO/local-ai-stack/services/mcp/osv-scanner/server.py"],
+      "env": { "PATH": "/opt/homebrew/bin:/Users/YOUR_USER/.local/bin:/usr/bin:/bin" }
+    },
+    "jq": { "command": "npx", "args": ["-y", "@247arjun/mcp-jq@1.0.0"] },
+    "github": {
+      "command": "github-mcp-server",
+      "args": ["stdio", "--read-only", "--toolsets", "repos,issues,pull_requests,actions,users"],
+      "env": { "GITHUB_PERSONAL_ACCESS_TOKEN": "YOUR_GITHUB_TOKEN" }
+    },
+    "blender": {
+      "command": "uvx",
+      "args": ["mcp-for-blender==2.0.0"],
+      "env": { "BLENDER_MCP_DISABLE_TELEMETRY": "1" }
+    },
+    "email": { "command": "uvx", "args": ["mcp-email-server@latest", "stdio"] }
+  }
+}

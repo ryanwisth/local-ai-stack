@@ -1,0 +1,39 @@
+# Python / Node
+__pycache__/
+*.py[cod]
+.venv/
+venv/
+node_modules/
+.cache/
+
+# Secrets: real configs stay out; only *.example files are tracked
+.env
+*.env
+stack.env
+.bearer
+.webui_secret_key
+mcpo-config.json
+settings.yml
+*.plist
+*.pem
+*.key
+
+# Runtime state, data and logs
+*.db
+*.db-*
+*.sqlite
+*.log
+*.jsonl
+eval/runs/
+data/
+
+# Model weights and large binaries
+*.onnx
+*.bin
+*.safetensors
+*.gguf
+*.pth
+*.ckpt
+
+# macOS
+.DS_Store

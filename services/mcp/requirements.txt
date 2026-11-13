@@ -1,0 +1,2 @@
+# shell-mcp.py runs in mcpo's own environment, which already ships the MCP SDK.
+mcp
