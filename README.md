@@ -2,6 +2,8 @@
 
 A documented reference setup for running a private AI assistant entirely on one Apple-silicon Mac: a local 27B language model, a chat UI, about two dozen tools, voice, document parsing and web search, kept running by a small supervisor.
 
+**Plain-words write-up:** [A private AI assistant on my laptop](https://ryanwisth.github.io/local-ai-stack.html)
+
 ## Why it exists
 
 Cloud assistants send every prompt, file and tool call off the machine. This stack keeps all of it on a MacBook Pro (M5 Pro, 64 GB): the model, the chat history, the tools and the search engine run locally and listen only on `127.0.0.1`. The hard part is not installing the pieces but making them work together on one memory-limited machine: tools the model can actually call, services that survive crashes and logouts, and a model server fast enough for daily use. This repo records how that was done, the scripts that run it, and what went wrong along the way.
